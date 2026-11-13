@@ -1,0 +1,85 @@
+<div class="container">
+  <h4 class="teal-text">Gestión de empleados</h4>
+
+  <div class="row">
+    <div class="col s12 m8 l6">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Registrar empleado</span>
+
+          <form
+            #empleadoForm="ngForm"
+            (ngSubmit)="guardarEmpleado(empleadoForm)">
+
+            <div class="input-field">
+              <input
+                id="nombre"
+                type="text"
+                name="name"
+                [(ngModel)]="empleado.name"
+                placeholder="Ingrese el nombre"
+                required>
+              <label for="nombre" class="active">Nombre</label>
+            </div>
+
+            <div class="input-field">
+              <input
+                id="cargo"
+                type="text"
+                name="position"
+                [(ngModel)]="empleado.position"
+                placeholder="Ingrese el cargo"
+                required>
+              <label for="cargo" class="active">Cargo</label>
+            </div>
+
+            <div class="input-field">
+              <input
+                id="oficina"
+                type="text"
+                name="office"
+                [(ngModel)]="empleado.office"
+                placeholder="Ingrese el lugar de trabajo"
+                required>
+              <label for="oficina" class="active">
+                Lugar de trabajo
+              </label>
+            </div>
+
+            <div class="input-field">
+              <input
+                id="salario"
+                type="number"
+                name="salary"
+                [(ngModel)]="empleado.salary"
+                min="0"
+                required>
+              <label for="salario" class="active">Salario</label>
+            </div>
+
+            <div class="acciones">
+              <button
+                class="btn teal"
+                type="submit"
+                [disabled]="empleadoForm.invalid || guardando()">
+                {{ guardando() ? 'Guardando...' : 'Guardar' }}
+              </button>
+
+              <button
+                class="btn grey"
+                type="button"
+                [disabled]="guardando()"
+                (click)="limpiarFormulario(empleadoForm)">
+                Limpiar
+              </button>
+            </div>
+          </form>
+
+          <p class="mensaje teal-text" role="status">
+            {{ mensaje() }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
